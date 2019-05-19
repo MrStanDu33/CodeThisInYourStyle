@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>#CTIYS - Download App Modal</title>
+
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="">
+
+		<meta name="robots" content="index, follow">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+		<meta property="fb:page_id" content="">
+		<meta property="og:title" content="">
+		<meta property="og:image" content="">
+		<meta property="og:description" content="">
+		<meta property="og:url" content="">
+		<meta property="og:site_name" content="">
+		<meta property="og:type" content="website">
+
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:url" content="">
+		<meta name="twitter:title" content="">
+		<meta name="twitter:description" content="">
+		<meta name="twitter:image" content="">
+		<meta name="twitter:site" content="">
+
+		<link href="https://fonts.googleapis.com/css?family=Arimo&display=swap" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+		<script>
+			$(document).ready(function()
+			{
+				var container = new UploadContainer($("ul.uploads")); // Set container
+				var modal = container.addFile("My Incredible Dog", "image"); // Add a file to the list
+				container.setPercentage(modal, 10); // Set upload progress of file "modal" to 10%
+
+				// Examples :
+				window.setInterval(function(){container.addFile("test", "pdf");}, 5000); // Add a file every 5 seconds for example
+				window.setInterval(function(){container.files.forEach(function(element){container.setPercentage(element, 100);});}, 8000); // Set upload progress to 100% to all files every 8 seconds for example
+			});
+
+			class UploadContainer
+			{
+				constructor(elem)
+				{
+					this.target = elem;
+					this.files = [];
+				}
+
+				addFile(name, type)
+				{
+					this.target.append("<li class=\" added file\"><img class=\"platformLogo\" src=\"https://daniels-roth-stan.fr/CodeThisInYourStyle/UploadFilesModal/"+type+"Icon.svg\" alt=\""+type+" Icon\"><div class=\"container\"><span class=\"name\">"+name+"</span><div class=\"progress\"><div class=\"bar\"></div></div></div><div class=\"close\"></div></li>");
+					let index = this.files.length;
+					this.files.push(this.target.find("li.file.added"));
+					this.files[index].removeClass("added");
+					this.files[index].css({right: "-100%"});
+					this.files[index].animate({right: "0"}, 500, "swing");
+					this.files[index].find("div.close").click($.proxy(function(e)
+					{
+						this.removeFile(this.files[index]);
+					}, this));
+					return (this.files[index]);
+				}
+
+				removeFile(file)
+				{
+					file.animate({right: "-500px"}, 200, function(){file.remove();});
+				}
+
+				setPercentage(file, percentage)
+				{
+					file.find("div.container>div.progress>div.bar").css("width", percentage+"%");
+					if (percentage === 100)
+					{
+						window.setTimeout(this.removeFile, 4000, file);
+					}
+				}
+			}
+		</script>
+
+		<style>
+			*
+			{
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+
+			html
+			{
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+
+			body
+			{
+				margin: 0;
+				position: relative;
+				min-height: 100%;
+				overflow-x: hidden;
+				background-image: url("https://daniels-roth-stan.fr/CodeThisInYourStyle/DownloadAppModal/Background.png");
+				background-size: cover;
+				background-position: 50% 50%;
+				background-repeat: no-repeat;
+				padding-top: 50px;
+			}
+
+			a
+			{
+				text-decoration: none;
+				color: inherit;
+				transition: all 0.1s linear;
+			}
+
+			ul
+			{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			body>div.container
+			{
+				height: 100vh;
+				width: 100vw;
+				max-height: 450px;
+				max-width: 800px;
+				position: relative;
+				margin: 0 auto;
+				background-color: #FFFFFF;
+				border-radius: 5px;
+			}
+
+			body>div.container>div.advertiserMessage
+			{
+				font-size: 16px;
+				color: #5A5F7C;
+				font-family: 'Arimo', sans-serif;
+				font-weight: 500;
+				width: 300px;
+				padding: 10px;
+			}
+
+			body>div.container>div.advertiserMessage>a
+			{
+				color: #D166FC;
+			}
+
+			body>div.container>ul.uploads
+			{
+				width: 95%;
+				max-width: 250px;
+				position: absolute;
+				bottom: 20px;
+				right: 20px;
+				overflow: hidden;
+			}
+
+			body>div.container>ul.uploads>li.file
+			{
+				background-image: linear-gradient(to right, #070735, #0a173b, #142240, #202d43, #2e3846);
+				border-radius : 5px;
+				margin-top: 5px;
+				display: flex;
+				flex-flow: row nowrap;
+				width: 100%;
+				height: 75px;
+				-webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+				-moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+				box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+				overflow: hidden;
+				position: relative;
+			}
+
+			body>div.container>ul.uploads>li.file>img.platformLogo
+			{
+				height: 75px;
+				width: 75px;
+				padding: 10px;
+			}
+
+			body>div.container>ul.uploads>li.file>div.container
+			{
+				display: flex;
+				flex-flow: column nowrap;
+				padding: 15px 0;
+				justify-content: space-evenly;
+				height: 100%;
+				width: calc(100% - 110px);
+			}
+
+			body>div.container>ul.uploads>li.file>div.container>span.name
+			{
+				color: #FFFFFF;
+				font-family: 'Arimo', sans-serif;
+				font-weight: 500;
+			}
+
+			body>div.container>ul.uploads>li.file>div.container>div.progress
+			{
+				height: 3px;
+				width: 100%;
+				background-color: #3E3E3E;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+
+			body>div.container>ul.uploads>li.file>div.container>div.progress>div.bar
+			{
+				height: 100%;
+				width: 0%;
+				background-color: #25FF00;
+				transition: all 0.7s ease-in-out;
+			}
+
+			body>div.container>ul.uploads>li.file>div.close
+			{
+				position: absolute;
+				background-color: #FF462E;
+				height: 30px;
+				width: 30px;
+				top: 0;
+				right: 0;
+				cursor: pointer;
+			}
+
+			body>div.container>ul.uploads>li.file>div.close:before
+			{
+				content: "";
+				display: block;
+				position: absolute;
+				background-color: #FFFFFF;
+				width: 20px;
+				height: 2px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%) rotate(45deg);
+			}
+
+			body>div.container>ul.uploads>li.file>div.close:after
+			{
+				content: "";
+				display: block;
+				position: absolute;
+				background-color: #FFFFFF;
+				width: 20px;
+				height: 2px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%) rotate(-45deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="advertiserMessage">
+				Inspired by <a href="https://dribbble.com/shots/6502898-Uploading-Dark-theme" target="_blank">this shot</a><br/>
+				By <a href="https://dribbble.com/abinrajm" target="_blank">Abin Raj M™</a><br/>
+				Coded by <a href="https://daniels-roth-stan.fr" target="_blank">DANIELS-ROTH Stan</a><br/>
+				Edit in <a href="https://codepen.io/mrstandu33/pen/byroar" target="_blank">CodePen</a><br/>
+			</div>
+			<ul class="uploads">
+			</ul>
+		</div>
+	</body>
+</html>
