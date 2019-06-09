@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>#CTIYS - Side NavBar</title>
+
+		<meta name="description" content=""/>
+		<meta name="keywords" content=""/>
+		<meta name="author" content=""/>
+
+		<meta name="robots" content="index, follow"/>
+		<meta name="mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+
+		<meta property="fb:page_id" content=""/>
+		<meta property="og:title" content=""/>
+		<meta property="og:image" content=""/>
+		<meta property="og:description" content=""/>
+		<meta property="og:url" content=""/>
+		<meta property="og:site_name" content=""/>
+		<meta property="og:type" content="website"/>
+
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:url" content=""/>
+		<meta name="twitter:title" content=""/>
+		<meta name="twitter:description" content=""/>
+		<meta name="twitter:image" content=""/>
+		<meta name="twitter:site" content=""/>
+
+		<link href="https://fonts.googleapis.com/css?family=Arimo&display=swap" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+		<script>
+			$(document).ready(function()
+			{
+				$("nav#sidebar>ul.group>li>a").click(function()
+				{
+					$("nav#sidebar>ul.group>li.active").removeClass("active");
+					$(this).parent().addClass("active");
+				});
+			});
+		</script>
+		<style>
+			*
+			{
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+
+			html
+			{
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+
+			body
+			{
+				margin: 0;
+				position: relative;
+				min-height: 100%;
+				overflow-x: hidden;
+				background-image: url("https://daniels-roth-stan.fr/CodeThisInYourStyle/SideNavBar/Background.png");
+				background-size: cover;
+				background-position: 50% 50%;
+				background-repeat: no-repeat;
+				padding-top: 50px;
+			}
+
+			a
+			{
+				text-decoration: none;
+				color: inherit;
+				transition: all 0.1s linear;
+			}
+
+			ul
+			{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			body>div.container
+			{
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: space-between;
+
+				overflow: hidden;
+				height: 100vh;
+				width: 100vw;
+				max-height: 450px;
+				max-width: 800px;
+				position: relative;
+				margin: 0 auto;
+				background-color: #FFFFFF;
+				border-radius: 5px;
+			}
+
+			body>div.container>nav#sidebar
+			{
+				width: fit-content;
+				background: #0064FF;
+				padding: 10px 10px;
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: flex-start;
+				align-items: center;
+				
+				font-family: 'Arimo', sans-serif;
+			}
+
+			body>div.container>nav#sidebar>ul.group
+			{
+				margin-top: 10%;
+				width: 100%;
+			}
+
+			body>div.container>nav#sidebar>ul.group>li
+			{
+				width: 100%;
+				border-radius: 20px;
+				padding: 10px;
+				padding-right: 50px;
+				color: #FFFFFF;
+			}
+
+			body>div.container>nav#sidebar>ul.group>li.active
+			{
+				background-color: #FFFFFF;
+				border-radius: 20px 0 0 20px;
+				position: relative;
+				color: #0064FF;
+			}
+
+			body>div.container>nav#sidebar>ul.group>li.active::before
+			{
+				display: block;
+				content: "";
+				position: absolute;
+				height: 44px;
+				width: 44px;
+				border-radius: 20px;
+				background-color: #0064FF;
+				top: -100%;
+				right: -10px;
+				z-index: 1;
+			}
+
+			body>div.container>nav#sidebar>ul.group>li.active::after
+			{
+				display: block;
+				content: "";
+				position: absolute;
+				height: 44px;
+				width: 44px;
+				border-radius: 20px;
+				background-color: #0064FF;
+				bottom: -100%;
+				right: -10px;
+			}
+
+			body>div.container>nav#sidebar>ul.group>li.active>a::before
+			{
+				display: block;
+				content: "";
+				position: absolute;
+				background-color: #FFFFFF;
+				height: 200%;
+				width: 19px;
+				top: -50%;
+				right: -10px;
+			}
+
+			body>div.container>nav#sidebar>ul.group>li>a>i.material-icons
+			{
+				color: #FFFFFF;
+				vertical-align: bottom;
+				margin-right: 10px;
+			}
+
+			body>div.container>nav#sidebar>ul.group>li.active>a>i.material-icons
+			{
+				color: #0064FF;
+			}
+
+			body>div.container>div.advertiserMessage
+			{
+				font-size: 16px;
+				color: #5A5F7C;
+				font-family: 'Arimo', sans-serif;
+				font-weight: 500;
+				padding: 10px;
+			}
+
+			body>div.container>div.advertiserMessage>a
+			{
+				color: #D166FC;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav id="sidebar">
+				<img src="https://daniels-roth-stan.fr/ressources/svg/logo.svg" alt="Company Logo"/>
+				<ul class="group">
+						<li class="active"><a href="#link1"><i class="material-icons">home</i>Home</a></li>
+						<li class=""><a href="#link2"><i class="material-icons">show_chart</i>Dashboard</a></li>
+						<li class=""><a href="#link3"><i class="material-icons">perm_identity</i>Contact</a></li>
+						<li class=""><a href="#link4"><i class="material-icons">calendar_today</i>Calender</a></li>
+						<li class=""><a href="#link5"><i class="material-icons">settings</i>Settings</a></li>
+				</ul>
+				<ul class="group">
+						<li class=""><a href="#link6"><i class="material-icons">logout</i>Sign out</a></li>
+				</ul>
+			</nav>
+			<div class="advertiserMessage">
+				Inspired by <a href="https://dribbble.com/shots/6503140-Time-Tracking-Dashboard" target="_blank">this shot</a><br/>
+				By <a href="https://dribbble.com/tapadar97" target="_blank">Abin Raj M™</a><br/>
+				Coded by <a href="https://daniels-roth-stan.fr" target="_blank">DANIELS-ROTH Stan</a><br/>
+				Edit in <a href="https://codepen.io/mrstandu33/pen/EBYjVp" target="_blank">CodePen</a><br/>
+			</div>
+		</div>
+	</body>
+</html>
